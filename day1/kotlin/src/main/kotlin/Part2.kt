@@ -8,10 +8,5 @@ fun main() {
     println(result)
 }
 
-fun countIncreasesWithSlidingWindow(numbers: List<Int>): Int {
-    val slidingWindowOf3Sum = numbers.zipWithNext().dropLast(1).zip(numbers.drop(2)) { (first, second), third ->
-        first + second + third
-    }
-
-    return countIncreases(slidingWindowOf3Sum)
-}
+fun countIncreasesWithSlidingWindow(numbers: List<Int>) =
+    countIncreases(numbers.windowed(3, 1).map { it.sum() })
